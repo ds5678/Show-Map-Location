@@ -1,25 +1,20 @@
-﻿using Harmony;
-using System.Collections.Generic;
-using System.Reflection;
+﻿using MelonLoader;
 using UnityEngine;
 
 namespace ShowMapLocation
 {
-    public class Implementation
+    public class Implementation : MelonMod
     {
-        public const string NAME = "Show-Map-Location";
+        //private const string LOCATION_NAME = "GAMEPLAY_Location";
 
-        private const string LOCATION_NAME = "GAMEPLAY_Location";
+        //private static MapDetail detail;
 
-        private static MapDetail detail;
-
-        public static void OnLoad()
+        public override void OnApplicationStart()
         {
-            AssemblyName assemblyName = Assembly.GetExecutingAssembly().GetName();
-            Log("Version " + assemblyName.Version);
+            Debug.Log($"[{Info.Name}] Version {Info.Version} loaded!");
         }
 
-        internal static void CleanupLocationMarkers()
+        /*internal static void CleanupLocationMarkers()
         {
             Dictionary<string, List<MapElementSaveData>> m_MapElementData = Traverse.Create(InterfaceManager.m_Panel_Map).Field("m_MapElementData").GetValue<Dictionary<string, List<MapElementSaveData>>>();
             if (m_MapElementData == null)
@@ -40,30 +35,23 @@ namespace ShowMapLocation
                     Log("Removed {0} orphaned location markers", count);
                 }
             }
-        }
+        }*/
 
-        internal static void HideLocationMarker()
+        /*internal static void HideLocationMarker()
         {
             if (detail == null)
             {
                 return;
             }
 
-            InterfaceManager.m_Panel_Map.RemoveMapDetailFromMap(detail);
-        }
+            InterfaceManager.m_Panel_Map.RemoveMapDetailFromMap(detail, 0f);
+        }*/
 
-        internal static void Log(string message)
-        {
-            Debug.LogFormat("[" + NAME + "] {0}", message);
-        }
+        //internal static void Log(string message) => MelonLogger.Log(message);
 
-        internal static void Log(string message, params object[] parameters)
-        {
-            string preformattedMessage = string.Format("[" + NAME + "] {0}", message);
-            Debug.LogFormat(preformattedMessage, parameters);
-        }
+        //internal static void Log(string message, params object[] parameters) => MelonLogger.Log(message,parameters);
 
-        internal static void ShowLocationMarker()
+        /*internal static void ShowLocationMarker()
         {
             if (detail == null)
             {
@@ -76,6 +64,6 @@ namespace ShowMapLocation
 
             detail.transform.position = GameManager.GetPlayerTransform().position;
             InterfaceManager.m_Panel_Map.AddMapDetailToMap(detail);
-        }
+        }*/
     }
 }
