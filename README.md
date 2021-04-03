@@ -1,4 +1,4 @@
-Show-Map-Location
+# Show-Map-Location
 
 This is a mod for **The Long Dark** by Hinterland Games Studio, Inc.
 
